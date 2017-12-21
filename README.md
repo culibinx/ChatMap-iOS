@@ -1,5 +1,8 @@
 **ChatMap** is a simple application for creating temporary markers on a map. On each marker you can open a chat and exchange messages or pictures.
 
+The application has been tested on 9.3 iOS SDK.
+
+
 ### Installation
 
 1. For installation [add Firebase to your app](https://firebase.google.com/docs/ios/setup).
