@@ -1,0 +1,121 @@
+/* 
+  Localizable.strings
+  enduro
+ 
+  Created by culibinx@gmail.com on 11.07.16.
+  Copyright © 2016 culibinx@gmail.com. All rights reserved.
+*/
+
+
+"Success connected on host:%@ with port:%li" = "Успешно соединено с %@ на порт %li";
+"Success disconnected on host:%@ with port:%li" = "Успешно рассоединено с %@ на порт %li";
+"Error connected on source:%@" = "Ошибка соединения с %@";
+"Error connected on empty source" = "Ошибка соединения c пустым источником";
+
+"Downloads" = "Загрузки";
+"Calculation downloaded areas..." = "Вычисление загруженных областей";
+"Deleting downloaded areas..." = "Удаление загруженных областей";
+"Successful removal!" = "Успешное удаление!";
+"Failure to remove!" = "Ошибка удаления!";
+"Download aborted!" = "Загрузка прервана!";
+"Successful downloaded!" = "Успешно загружено!";
+"Stop downloading" = "Остановить загрузку";
+
+"Message exchange" = "Обмен сообщениями";
+"Markers" = "Маркеры";
+"Show markers" = "Отобразить маркеры";
+"Hide markers" = "Скрыть маркеры";
+"Select markers" = "Выбрать маркеры";
+
+"Problem" = "Проблема";
+"The selected link cannot be opened" = "Не удается открыть ссылку";
+
+"Settings" = "Настройки";
+"Authentication" = "Аутентификация";
+"Type another nickname" = "Введите другой никнейм";
+"Type your nickname..." = "Введите свой никнейм...";
+"Type your avatar e-mail..." = "Введите свой avatar e-mail...";
+"Type name of channel..." = "Введите название канала...";
+"Done" = "Готово";
+"Leave chat" = "Покинуть чат";
+
+"Create marker" = "Создать маркер";
+"Type description..." = "Введите описание...";
+"Error - empty description" = "Ошибка - пустое описание";
+
+"Type GPS source..." = "Введите источник GPS...";
+"External GPS" = "Внешний GPS";
+"Inner GPS" = "Внутренний GPS";
+"GPS enable" = "Включить GPS";
+"GPS disable" = "Выключить GPS";
+"Select type GPS" = "Выберите тип GPS";
+
+"Cancel" = "Отмена";
+"Information of cache" = "Информация о кеше";
+"Dump area" = "Загрузить область";
+"Align areas" = "Выровнять области";
+"Only current area" = "Только текущую область";
+"Clear downloads" = "Очистить загрузки";
+"Clear all" = "Очистить все";
+"Warning" = "Предупреждение";
+"Please enable location services in the Settings app." = "Пожалуйста включите службы геолокации в Настройках";
+"OK" = "ОК";
+"Info" = "Информация";
+"Send location" = "Отправить координаты";
+"Remove marker" = "Удалить маркер";
+
+"Notify about new markers" = "Уведомлять о новых маркерах";
+"Notify about new messages" = "Уведомлять о новых сообщениях";
+"Create marker" = "Добавление маркера";
+"Time to expire" = "Время видимости";
+
+"<photo>" = "<фото>";
+
+"Type name of channel" = "Введите название канала";
+"Type another name of channel" = "Введите другое название канала";
+"Error created marker" = "Ошибка создания маркера";
+"Copy marker" = "Скопировать маркер";
+
+"New marker" = "Новый маркер";
+"Marker created:\n%@" = "Создан маркер:\n%@";
+
+"[ remained %@ ]" = "[ осталось %@ ]";
+" ms" = " мс";
+" sec" = " сек";
+" min" = " мин";
+" h" = " ч";
+" d" = " д";
+
+"Attachments" = "Ресурсы";
+"Take Photo" = "Снять фото";
+"Select Photo" = "Выбрать фото";
+"Uploading - %.0f%%" = "Загрузка - %.0f%%";
+"File doesn't exist" = "Файл не существует";
+"User doesn't have permission to access file" = "Пользователь не имеет прав";
+"User canceled the upload" = "Пользователь отменил загрузку";
+"Unknown error occurred, inspect the server response" = "Неизвестная ошибка";
+
+"You logged as %@" = "Вы вошли как %@";
+
+"Message" = "Сообщение";
+"Send" = "Отпр";
+"Editing Message" = "Редактирование сообщения";
+"Cancel" = "Отмена";
+"Save" = "Сохранить";
+"Undo" = "Отменить";
+"Redo" = "Возвратить";
+"Format" = "Форматировать";
+"Undo Typing" = "Отменить Ввод";
+"Send/Accept" = "Отправить/Принять";
+"Dismiss" = "Сбросить";
+"%@ is typing" = "%@ набирает";
+"%@ & %@ are typing" = "%@ & %@ набирают";
+"Several people are typing" = "Несколько людей набирают";
+
+"Location is needed to get your current address" = "Службы геолокации нужны для определения геопозиции";
+"Info: zoom %@ [downloaded %i of %i]" = "Информация: приближение %@ [загружено %i из %i]";
+"Download: zoom %i remained [%i]" = "Загрузка: приближение %i осталось [%i]";
+"Error: %i zoom %i" = "Ошибка: %i приближение %i";
+
+
+

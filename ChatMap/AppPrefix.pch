@@ -1,0 +1,107 @@
+//
+// Prefix header for all source files of the 'MapView' target in the 'MapView' project
+//POST
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <UIKit/UIKit.h>
+    #import <AudioToolbox/AudioToolbox.h>
+    #import <UserNotifications/UserNotifications.h>
+#endif
+
+
+#define ON_BACKGROUND ([UIApplication sharedApplication].applicationState != UIApplicationStateActive)
+
+#define kRefreshView @"RefreshView"
+#define kRemoveMarker @"RemoveMarker"
+#define kEnterRoom @"EnterRoom"
+#define kLeaveRoom @"LeaveRoom"
+#define kReceiveMessage @"ReceiveMessage"
+#define kRemoveMessage @"RemoveMessage"
+#define kUpdateSettings @"UpdateSettings"
+
+#define UNSUBSCRIBE_NOTIFICATIONS [[NSNotificationCenter defaultCenter] removeObserver:self]
+#define SUBSCRIBE_NOTIFICATION(k,sel) [[NSNotificationCenter defaultCenter] addObserver:self selector:sel name:k object:nil];
+#define POST_NOTIFICATION(k,u) [[NSNotificationCenter defaultCenter] postNotificationName:k object:self userInfo:u]
+
+#define PLAY_SEND_POINT AudioServicesPlaySystemSound(1004)
+#define PLAY_RECEIVE_POINT AudioServicesPlaySystemSound(1016)   // tweet_sent.caf
+
+#define PLAY_SEND_MESSAGE AudioServicesPlaySystemSound(1004)    // SentMessage.caf
+#define PLAY_RECEIVE_MESSAGE AudioServicesPlaySystemSound(1003) // ReceivedMessage.caf
+
+#define PLAY_DELETE_POINT AudioServicesPlaySystemSound(1023)    // Choo_Choo.caf
+
+#define TS_LONG [NSNumber numberWithLong:time(NULL)*1000]
+
+#define BOOL_VALUE(a) [NSNumber numberWithBool:a]
+#define FLOAT_VALUE(a) [NSNumber numberWithFloat:a]
+#define DOUBLE_VALUE(a) [NSNumber numberWithDouble:a]
+#define INTEGER_VALUE(a) [NSNumber numberWithInteger:a]
+#define LONG_VALUE(a) [NSNumber numberWithLong:a]
+#define TO_STRING(a)  [NSString stringWithFormat:@"%@",a]
+
+#define MUTABLE(d) [NSMutableDictionary dictionaryWithDictionary:d]
+
+#define BUTTON_FRAME(x,y,w,h) [[UIButton alloc] initWithFrame:CGRectMake(x, y, w, h)]
+#define BUTTON_TITLE(b,t) [b setTitle:t forState:UIControlStateNormal]
+#define BUTTON_IMAGE(b,i) [b setImage:[UIImage imageNamed:i] forState:UIControlStateNormal]
+#define BUTTON_ACTION(b,s) [b addTarget:self action:s forControlEvents:UIControlEventTouchUpInside]
+
+#define RGB_COLOR(r,g,b) [UIColor colorWithRed:r/255 green:g/255 blue:b/255 alpha:1]
+
+#define TRANSLATE(key) NSLocalizedString(key, key)
+
+#define DEFINE_SHARED_INSTANCE_USING_BLOCK(block) \
+static dispatch_once_t pred = 0; \
+__strong static id _sharedObject = nil; \
+dispatch_once(&pred, ^{ \
+_sharedObject = block(); \
+}); \
+return _sharedObject;
+
+#define IS_DICTIONARY(o) (o && [o class] != NSNull.class && ([o isKindOfClass:[NSDictionary class]] || [o isKindOfClass:[NSMutableDictionary class]]))
+#define IS_ARRAY(o) (o && [o class] != NSNull.class && ([o isKindOfClass:[NSArray class]] || [o isKindOfClass:[NSMutableArray class]]))
+
+// ------------- CONSTRAINTS
+#define PREPCONSTRAINTS(VIEW) [VIEW setTranslatesAutoresizingMaskIntoConstraints:NO]
+#define CONSTRAIN(PARENT, VIEW, FORMAT) [PARENT addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:(FORMAT) options:0 metrics:nil views:NSDictionaryOfVariableBindings(VIEW)]]
+#define CONSTRAIN_VIEWS(PARENT, FORMAT, VIEWBINDINGS) [PARENT addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:(FORMAT) options:0 metrics:nil views:VIEWBINDINGS]]
+#define TOP_LAYOUT_CONSTRAINT(VIEW) [NSLayoutConstraint constraintWithItem:VIEW attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.topLayoutGuide attribute:NSLayoutAttributeBottom multiplier:1.0f constant:0.0f]
+
+
+// Stretch across axis
+#define STRETCH_VIEW_H(PARENT, VIEW) CONSTRAIN(PARENT, VIEW, @"H:|["#VIEW"(>=0)]|")
+#define STRETCH_VIEW_V(PARENT, VIEW) CONSTRAIN(PARENT, VIEW, @"V:|["#VIEW"(>=0)]|")
+#define STRETCH_VIEW(PARENT, VIEW) {STRETCH_VIEW_H(PARENT, VIEW); STRETCH_VIEW_V(PARENT, VIEW);}
+
+// Center along axis
+#define CENTER_VIEW_H(PARENT, VIEW) [PARENT addConstraint:[NSLayoutConstraint constraintWithItem:VIEW attribute: NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:PARENT attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0.0f]]
+#define CENTER_VIEW_V(PARENT, VIEW) [PARENT addConstraint:[NSLayoutConstraint constraintWithItem:VIEW attribute: NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:PARENT attribute:NSLayoutAttributeCenterY multiplier:1.0f constant:0.0f]]
+#define CENTER_VIEW_H_CONSTANT(PARENT, VIEW, CONSTANT) [PARENT addConstraint:[NSLayoutConstraint constraintWithItem:VIEW attribute: NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:PARENT attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:CONSTANT]]
+#define CENTER_VIEW_V_CONSTANT(PARENT, VIEW, CONSTANT) [PARENT addConstraint:[NSLayoutConstraint constraintWithItem:VIEW attribute: NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:PARENT attribute:NSLayoutAttributeCenterY multiplier:1.0f constant:CONSTANT]]
+#define CENTER_VIEW(PARENT, VIEW) {CENTER_VIEW_H(PARENT, VIEW); CENTER_VIEW_V(PARENT, VIEW);}
+
+// Align to parent
+#define ALIGN_VIEW_LEFT(PARENT, VIEW) [PARENT addConstraint:[NSLayoutConstraint constraintWithItem:VIEW attribute: NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:PARENT attribute:NSLayoutAttributeLeft multiplier:1.0f constant:0.0f]]
+#define ALIGN_VIEW_RIGHT(PARENT, VIEW) [PARENT addConstraint:[NSLayoutConstraint constraintWithItem:VIEW attribute: NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:PARENT attribute:NSLayoutAttributeRight multiplier:1.0f constant:0.0f]]
+#define ALIGN_VIEW_TOP(PARENT, VIEW) [PARENT addConstraint:[NSLayoutConstraint constraintWithItem:VIEW attribute: NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:PARENT attribute:NSLayoutAttributeTop multiplier:1.0f constant:0.0f]]
+#define ALIGN_VIEW_BOTTOM(PARENT, VIEW) [PARENT addConstraint:[NSLayoutConstraint constraintWithItem:VIEW attribute: NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:PARENT attribute:NSLayoutAttributeBottom multiplier:1.0f constant:0.0f]]
+#define ALIGN_VIEW_LEFT_CONSTANT(PARENT, VIEW, CONSTANT) [PARENT addConstraint:[NSLayoutConstraint constraintWithItem:VIEW attribute: NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:PARENT attribute:NSLayoutAttributeLeft multiplier:1.0f constant:CONSTANT]]
+#define ALIGN_VIEW_RIGHT_CONSTANT(PARENT, VIEW, CONSTANT) [PARENT addConstraint:[NSLayoutConstraint constraintWithItem:VIEW attribute: NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:PARENT attribute:NSLayoutAttributeRight multiplier:1.0f constant:CONSTANT]]
+#define ALIGN_VIEW_TOP_CONSTANT(PARENT, VIEW, CONSTANT) [PARENT addConstraint:[NSLayoutConstraint constraintWithItem:VIEW attribute: NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:PARENT attribute:NSLayoutAttributeTop multiplier:1.0f constant:CONSTANT]]
+#define ALIGN_VIEW_BOTTOM_CONSTANT(PARENT, VIEW, CONSTANT) [PARENT addConstraint:[NSLayoutConstraint constraintWithItem:VIEW attribute: NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:PARENT attribute:NSLayoutAttributeBottom multiplier:1.0f constant:CONSTANT]]
+
+#define ALIGN_VIEW_LEFT_RELATIVE_CONSTANT(PARENT, VIEW, RELATIVE, CONSTANT) [PARENT addConstraint:[NSLayoutConstraint constraintWithItem:VIEW attribute: NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:RELATIVE attribute:NSLayoutAttributeLeft multiplier:1.0f constant:CONSTANT]]
+#define ALIGN_VIEW_TOP_RELATIVE_CONSTANT(PARENT, VIEW, RELATIVE, CONSTANT) [PARENT addConstraint:[NSLayoutConstraint constraintWithItem:VIEW attribute: NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:RELATIVE attribute:NSLayoutAttributeTop multiplier:1.0f constant:CONSTANT]]
+
+// Set Size
+#define CONSTRAIN_WIDTH(PARENT, VIEW, WIDTH) [PARENT addConstraint:[NSLayoutConstraint constraintWithItem:VIEW attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:WIDTH]];
+#define CONSTRAIN_HEIGHT(PARENT, VIEW, HEIGHT) [PARENT addConstraint:[NSLayoutConstraint constraintWithItem:VIEW attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:HEIGHT]];
+#define CONSTRAIN_SIZE(PARENT, VIEW, WIDTH, HEIGHT) {CONSTRAIN_WIDTH(PARENT, VIEW, WIDTH); CONSTRAIN_HEIGHT(PARENT, VIEW, HEIGHT);}
+
+// Set Aspect
+#define CONSTRAIN_ASPECT(VIEW, ASPECT) [VIEW addConstraint:[NSLayoutConstraint constraintWithItem:VIEW attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:VIEW attribute:NSLayoutAttributeHeight multiplier:(ASPECT) constant:0.0f]]
+
+
+//#define BLog(formatString, ...) NSLog((@"" formatString), ##__VA_ARGS__);
